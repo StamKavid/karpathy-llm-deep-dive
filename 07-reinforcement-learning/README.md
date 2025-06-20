@@ -59,12 +59,14 @@ graph LR
     B --> C[Automatic Check<br/>✓ Correct]
     C --> D[Reward: +1]
     
-    E[Code Problem<br/>Sort array] --> F[Model Solution<br/>def sort(...)]
+    E[Code Problem<br/>Sort array] --> F[Model Solution<br/>def sort array]
     F --> G[Run Tests<br/>✓ All Pass]
     G --> H[Reward: +1]
     
-    style C fill:#4caf50
-    style G fill:#4caf50
+    style C fill:#4caf50,color:#fff
+    style G fill:#4caf50,color:#fff
+    style D fill:#2196f3,color:#fff
+    style H fill:#2196f3,color:#fff
 ```
 
 ### Unverifiable Domains (Hard RL)

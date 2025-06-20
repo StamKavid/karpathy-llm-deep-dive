@@ -141,7 +141,7 @@ This course is based on Andrej Karpathy's excellent video: [Deep Dive into LLMs 
 These educational materials have been created based on the transcript of Andrej Karpathy's YouTube video tutorial. The content has been structured, expanded, and enhanced with additional code examples and visual diagrams to create a comprehensive learning resource.
 
 **Creation Process:**
-This repository was developed using an AI agent with the following prompt:
+This repository was developed using an AI coding agent with the following prompt:
 > "You are an expert in creating educational materials for AI. Your task is to go through the transcript of a tutorial from Karpathy on Deep Dive into LLMs, and structure a GitHub repo with sections and with theory + coding (if possible). Also try to generate mermaid charts for each chapter so that users can better understand the content."
 
 **What This Means:**

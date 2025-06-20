@@ -33,20 +33,22 @@ graph LR
 
 ```mermaid
 graph TD
-    A[User Types Message<br/>"What is 2+2?"] --> B[Tokenization<br/>Convert to numbers]
-    B --> C[Context Building<br/>Add special tokens]
-    C --> D[Forward Pass<br/>Neural network computation]
-    D --> E[Next Token Prediction<br/>Probability distribution]
-    E --> F[Token Sampling<br/>Pick next token]
-    F --> G[Detokenization<br/>Convert back to text]
-    G --> H{End of response?}
-    H -->|No| I[Add token to context]
+    A["User Types Message<br/>'What is 2+2?'"] --> B["Tokenization<br/>Convert to numbers"]
+    B --> C["Context Building<br/>Add special tokens"]
+    C --> D["Forward Pass<br/>Neural network computation"]
+    D --> E["Next Token Prediction<br/>Probability distribution"]
+    E --> F["Token Sampling<br/>Pick next token"]
+    F --> G["Detokenization<br/>Convert back to text"]
+    G --> H{"End of response?"}
+    H -->|No| I["Add token to context"]
     I --> D
-    H -->|Yes| J[Return complete response]
+    H -->|Yes| J["Return complete response"]
     
-    style D fill:#ffeb3b
-    style F fill:#4caf50
-    style J fill:#2196f3
+    style D fill:#ffeb3b,color:#000
+    style F fill:#4caf50,color:#fff
+    style J fill:#2196f3,color:#fff
+    style A fill:#f5f5f5,color:#000
+    style H fill:#ff9800,color:#fff
 ```
 
 ### What Happens Behind the Scenes
@@ -178,16 +180,28 @@ class BatchedInference:
 
 ```mermaid
 graph LR
-    A[Previous Tokens<br/>Computed Once] --> B[Cached K,V Values<br/>Reuse computation]
-    B --> C[New Token<br/>Only compute new]
-    C --> D[Faster Generation<br/>Linear vs Quadratic]
+    A["Previous Tokens<br/>Computed Once"] --> B["Cached K,V Values<br/>Reuse computation"]
+    B --> C["New Token<br/>Only compute new"]
+    C --> D["Faster Generation<br/>Linear vs Quadratic"]
     
-    E[Without Cache] --> F[Recompute Everything<br/>O(n²) for n tokens]
-    G[With Cache] --> H[Compute Only New<br/>O(n) for n tokens]
+    E["Without Cache"] --> F["Recompute Everything<br/>O(n²) for n tokens"]
+    G["With Cache"] --> H["Compute Only New<br/>O(n) for n tokens"]
     
-    style B fill:#4caf50
-    style D fill:#4caf50
-    style H fill:#4caf50
+    subgraph "KV Cache Flow"
+        A --> B --> C --> D
+    end
+    
+    subgraph "Comparison"
+        E --> F
+        G --> H
+    end
+    
+    style B fill:#4caf50,color:#fff
+    style D fill:#4caf50,color:#fff
+    style H fill:#4caf50,color:#fff
+    style F fill:#f44336,color:#fff
+    style A fill:#e3f2fd,color:#000
+    style G fill:#e3f2fd,color:#000
 ```
 
 ### 3. Model Quantization
